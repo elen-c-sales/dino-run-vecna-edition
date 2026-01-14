@@ -10,6 +10,8 @@ Um registro em vídeo das funcionalidades do software pode ser encontrado no lin
 
 *   https://github.com/user-attachments/assets/293a495e-0e38-4212-9a97-468c082c7f01
 
+*   https://github.com/user-attachments/assets/f2253dab-7e37-47df-9b75-82063a9f3936
+
 
 
 ## Requisitos do Sistema
