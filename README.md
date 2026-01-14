@@ -8,6 +8,10 @@ Um registro em vídeo das funcionalidades do software pode ser encontrado no lin
 
 *   [Demonstração em Vídeo (MP4)](demo/demo_gorgon_.mp4)
 
+*   https://github.com/user-attachments/assets/293a495e-0e38-4212-9a97-468c082c7f01
+
+
+
 ## Requisitos do Sistema
 Para a execução correta deste software, são necessários:
 *   Python 3.x instalado.
