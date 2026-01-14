@@ -3,6 +3,11 @@
 ## Descrição do Projeto
 Este software consiste em uma implementação de um jogo do gênero "endless runner" desenvolvido em Python, utilizando a biblioteca Pygame. O projeto apresenta uma adaptação temática baseada na série "Stranger Things", incorporando elementos visuais e sonoros característicos, como o antagonista Vecna, Demobats e o ambiente do "Mundo Invertido". O objetivo principal é percorrer a maior distância possível evitando obstáculos, com incremento progressivo de dificuldade.
 
+## Demonstração
+Um registro em vídeo das funcionalidades do software pode ser encontrado no link abaixo. O formato MP4 permite visualização direta na interface web do repositório:
+
+*   [Demonstração em Vídeo (MP4)](demo/demo_gorgon_.mp4)
+
 ## Requisitos do Sistema
 Para a execução correta deste software, são necessários:
 *   Python 3.x instalado.
@@ -37,4 +42,9 @@ A interação com o software é realizada através do teclado:
 ## Estrutura de Arquivos
 *   `dino-run.py`: Código-fonte principal contendo o loop do jogo, classes e lógica de controle.
 *   `assets/`: Diretório contendo os recursos gráficos (.png) e sonoros (.wav).
+*   `demo/`: Diretório contendo vídeo de demonstração do funcionamento do software.
 *   `highscore.txt`: Arquivo de texto simples para armazenamento da pontuação máxima.
+*   `LICENSE`: Termos de licenciamento do software.
+
+## Licença
+Este projeto está licenciado sob a Licença MIT. Consulte o arquivo [LICENSE](LICENSE) para obter mais informações.
