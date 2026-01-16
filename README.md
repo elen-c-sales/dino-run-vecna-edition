@@ -43,11 +43,17 @@ A interação com o software é realizada através do teclado:
 *   **Geração Procedural de Obstáculos**: O jogo instancia aleatoriamente obstáculos do tipo "vinha", "relógio" e "demobat".
 *   **Sistema de Pontuação**: A pontuação é incrementada conforme a progressão do jogador. O recorde (High Score) é persistido localmente no arquivo `highscore.txt`.
 *   **Colisão**: Implementação de hitboxes ajustadas para detecção precisa de impacto entre o personagem e os obstáculos.
-*   **Efeitos Visuais**: Inclui sistema de partículas para simular as cinzas do ambiente e efeito de parallax no plano de fundo.
+*   **Efeitos Visuais**: 
+    *   **Sistema de Partículas**: Simula cinzas flutuantes do Mundo Invertido.
+    *   **Efeito Parallax**: Implementação de scrolling em duas camadas com velocidades diferentes (15% e 40% da velocidade do jogo), criando sensação de profundidade no cenário.
+*   **Trilha Sonora**: Música temática de Stranger Things tocando em loop contínuo durante o jogo.
 
 ## Estrutura de Arquivos
 *   `dino-run.py`: Código-fonte principal contendo o loop do jogo, classes e lógica de controle.
-*   `assets/`: Diretório contendo os recursos gráficos (.png) e sonoros (.wav).
+*   `assets/`: Diretório contendo os recursos gráficos e sonoros:
+    *   Imagens (.png): sprites do personagem, obstáculos, e camadas de fundo para parallax (`fundo-camada1.png`, `fundo-camada2.png`).
+    *   Áudio (.wav): efeitos sonoros de pulo, morte e pontuação.
+    *   Música (.mp3): trilha sonora temática de Stranger Things (`stranger_things_trilha.mp3`).
 *   `demo/`: Diretório contendo vídeo de demonstração do funcionamento do software.
 *   `highscore.txt`: Arquivo de texto simples para armazenamento da pontuação máxima.
 *   `LICENSE`: Termos de licenciamento do software.

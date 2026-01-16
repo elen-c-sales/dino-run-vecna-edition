@@ -27,9 +27,14 @@ pygame.mixer.music.load(os.path.join("assets", "stranger_things_trilha.mp3"))
 pygame.mixer.music.set_volume(0.3)  # Volume entre 0.0 e 1.0
 pygame.mixer.music.play(-1)  # -1 = loop infinito
 
-fundo_img = pygame.image.load(os.path.join("assets", "fundo-lento2.png")).convert()
-fundo_img = pygame.transform.scale(fundo_img, (LARGURA, ALTURA))
-largura_fundo = fundo_img.get_width()
+# Camadas de fundo para efeito parallax
+fundo_camada1 = pygame.image.load(os.path.join("assets", "fundo-camada1.png")).convert_alpha()
+fundo_camada1 = pygame.transform.scale(fundo_camada1, (LARGURA, ALTURA))
+largura_camada1 = fundo_camada1.get_width()
+
+fundo_camada2 = pygame.image.load(os.path.join("assets", "fundo-camada2.png")).convert_alpha()
+fundo_camada2 = pygame.transform.scale(fundo_camada2, (LARGURA, ALTURA))
+largura_camada2 = fundo_camada2.get_width()
 
 # --- CLASSES ---
 
@@ -172,29 +177,38 @@ def salvar_highscore(score):
     with open(ARQUIVO_HS, "w") as f: f.write(str(score))
 
 def resetar_jogo():
-    # dino, obstaculos, cinzas, bg_x, timer, vel, pontos, game_over
+    # dino, obstaculos, cinzas, bg_x1, bg_x2, timer, vel, pontos, game_over
     c = [Cinza() for _ in range(40)]
-    return Dino(), [], c, 0, 0, 7, 0, False
+    return Dino(), [], c, 0, 0, 0, 7, 0, False
 
 # --- LOOP PRINCIPAL ---
-dino, obstaculos, cinzas, bg_x, timer_spawn, vel_jogo, pontos, game_over = resetar_jogo()
+dino, obstaculos, cinzas, bg_x1, bg_x2, timer_spawn, vel_jogo, pontos, game_over = resetar_jogo()
 high_score = carregar_highscore()
 fonte = pygame.font.SysFont("Arial", 22, bold=True)
 fonte_grande = pygame.font.SysFont("Arial", 55, bold=True)
 
 rodando = True
 while rodando:
-    # 1. Background e Parallax
-    tela.blit(fundo_img, (bg_x, 0))
-    tela.blit(fundo_img, (largura_fundo + bg_x, 0))
+    # 1. Background e Parallax (camada de fundo se move mais devagar)
+    # Camada 2 (fundo) - velocidade mais lenta para dar profundidade
+    tela.blit(fundo_camada2, (bg_x2, 0))
+    tela.blit(fundo_camada2, (largura_camada2 + bg_x2, 0))
+    
+    # Camada 1 (frente) - velocidade mais rápida
+    tela.blit(fundo_camada1, (bg_x1, 0))
+    tela.blit(fundo_camada1, (largura_camada1 + bg_x1, 0))
     
     for c in cinzas:
         c.atualizar()
         c.desenhar(tela)
     
     if not game_over:
-        bg_x -= vel_jogo * 0.3 
-        if bg_x <= -largura_fundo: bg_x = 0
+        # Parallax: camada de fundo (2) se move mais devagar que a da frente (1)
+        bg_x2 -= vel_jogo * 0.15  # Camada de fundo - 15% da velocidade
+        bg_x1 -= vel_jogo * 0.4   # Camada da frente - 40% da velocidade
+        
+        if bg_x2 <= -largura_camada2: bg_x2 = 0
+        if bg_x1 <= -largura_camada1: bg_x1 = 0
 
     # 2. Eventos
     for evento in pygame.event.get():
@@ -202,10 +216,10 @@ while rodando:
         if evento.type == pygame.KEYDOWN:
             if evento.key in [pygame.K_SPACE, pygame.K_UP]:
                 if game_over:
-                    dino, obstaculos, cinzas, bg_x, timer_spawn, vel_jogo, pontos, game_over = resetar_jogo()
+                    dino, obstaculos, cinzas, bg_x1, bg_x2, timer_spawn, vel_jogo, pontos, game_over = resetar_jogo()
                 else: dino.pular()
             if evento.key == pygame.K_r and game_over:
-                dino, obstaculos, cinzas, bg_x, timer_spawn, vel_jogo, pontos, game_over = resetar_jogo()
+                dino, obstaculos, cinzas, bg_x1, bg_x2, timer_spawn, vel_jogo, pontos, game_over = resetar_jogo()
         if evento.type == pygame.KEYUP:
             if evento.key in [pygame.K_SPACE, pygame.K_UP]: dino.cancelar_pulo()
 
