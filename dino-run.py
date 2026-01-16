@@ -22,6 +22,11 @@ som_pulo = pygame.mixer.Sound(os.path.join("assets", "jump.wav"))
 som_morte = pygame.mixer.Sound(os.path.join("assets", "die.wav"))
 som_ponto = pygame.mixer.Sound(os.path.join("assets", "point.wav")) # Novo som
 
+# Música de fundo
+pygame.mixer.music.load(os.path.join("assets", "stranger_things_trilha.mp3"))
+pygame.mixer.music.set_volume(0.3)  # Volume entre 0.0 e 1.0
+pygame.mixer.music.play(-1)  # -1 = loop infinito
+
 fundo_img = pygame.image.load(os.path.join("assets", "fundo-lento2.png")).convert()
 fundo_img = pygame.transform.scale(fundo_img, (LARGURA, ALTURA))
 largura_fundo = fundo_img.get_width()
