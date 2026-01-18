@@ -1,6 +1,5 @@
 # Ignorar build do pygbag
 build/
-docs/
 
 # Python
 __pycache__/
