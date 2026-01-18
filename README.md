@@ -9,7 +9,6 @@ Jogue diretamente no seu navegador sem precisar instalar nada:
 
 **[▶️ JOGAR AGORA](https://elen-c-sales.github.io/dino-run-vecna-edition/)**
 
-> **Nota**: Após configurar o GitHub Pages seguindo o [DEPLOY.md](DEPLOY.md), seu jogo estará disponível em `https://<seu-usuario>.github.io/<nome-do-repositorio>/`
 
 O jogo é compilado para WebAssembly usando [Pygbag](https://github.com/pygame-web/pygbag) e hospedado no GitHub Pages.
 
