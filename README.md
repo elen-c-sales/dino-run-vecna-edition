@@ -9,6 +9,8 @@ Jogue diretamente no seu navegador sem precisar instalar nada:
 
 **[▶️ JOGAR AGORA](https://elen-c-sales.github.io/dino-run-vecna-edition/)**
 
+> **Nota**: Após configurar o GitHub Pages seguindo o [DEPLOY.md](DEPLOY.md), seu jogo estará disponível em `https://<seu-usuario>.github.io/<nome-do-repositorio>/`
+
 O jogo é compilado para WebAssembly usando [Pygbag](https://github.com/pygame-web/pygbag) e hospedado no GitHub Pages.
 
 ## Demonstração
@@ -78,15 +80,29 @@ python dino-run.py
 ```
 
 ### Versão Web
-O jogo está configurado para deploy automático no GitHub Pages através do arquivo `main.py` e GitHub Actions:
 
-1. **Build Automático**: Cada push na branch `main` aciona o workflow do GitHub Actions
-2. **Pygbag**: Compila o jogo Python/Pygame para WebAssembly
-3. **Deploy**: Publica automaticamente no GitHub Pages
+O jogo pode ser compilado para rodar no navegador usando **Pygbag**:
 
-Para testar o build localmente:
+**Build manual (sem GitHub Actions)**:
 ```bash
+# 1. Instalar pygbag
 pip install pygbag
-pygbag main.py
-# Acesse http://localhost:8000
+
+# 2. Compilar o jogo
+pygbag --build .
+
+# 3. Copiar para docs/ (GitHub Pages)
+xcopy /E /I /Y build\web docs
+
+# 4. Testar localmente
+python -m http.server 8000 --directory docs
+
+# 5. Commit e push
+git add docs/
+git commit -m "Build: Versão web"
+git push
 ```
+
+**GitHub Pages**: Configure em Settings → Pages → Source: `main` branch, `/docs` folder.
+
+Para mais detalhes, consulte [DEPLOY.md](DEPLOY.md).
